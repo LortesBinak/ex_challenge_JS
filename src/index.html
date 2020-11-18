@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vue Basics</title>
+    <title>Programming Challenge</title>
     <link
       href="https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap"
       rel="stylesheet"
@@ -11,13 +11,17 @@
     <link rel="stylesheet" href="styles.css" />
     <script src="https://unpkg.com/vue@next" defer></script>
     <script src="app.js" defer></script>
+    <script src="../../PapaParse-5.0.2/papaparse.min.js"></script>
   </head>
   <body>
     <header>
-      <h1>Vue Lists and Conditional Content</h1>
+      <h1>Import,Read and evaluate a CSV</h1>
     </header>
-    <section id="programming challenge">
-      
+    <section id="programmingChallenge">
+      <input type="file" id="uploadCsvFile" @change="previewFiles" >
+      <button @click="evaluateCsv">Evaluate CSV</button>
+
+      <table id="exportCsvTable"></table>
     </section>
   </body>
 </html>
