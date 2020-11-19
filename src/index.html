@@ -21,10 +21,10 @@
       <input type="file" id="uploadCsvFile" @change="previewFiles" >
       <button @click="parseCsv">Parse CSV</button>
       <div v-if="parsingStatus">
-        <p>The parsing was successful. The file can now be evaluated!</p>
+        <p :style="{color: 'Blue', 'font-weight': 'bold'}">The parsing was successful. The file can now be evaluated!</p>
         <h3>First Input for comparison (Minimum value) </h3>
         <ul>
-            <li v-for="(value,key, index) in parsedFileKeys" :key="value">{{value}}</li>
+            <li v-for="(value,key, index) in parsedFileKeys" :key="value" @click="alert('hi')">{{value}}</li>
         </ul>
         <h3>Second Input for comparison (Maximum value) </h3>
         <ul>

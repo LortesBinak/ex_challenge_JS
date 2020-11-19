@@ -5,8 +5,9 @@ const app = Vue.createApp({
             parsingStatus: false,
             parsedFileArray: [],
             parsedFileKeys: [],
-            parsedFileObject:{},
-            maximum: '',
+            inputKey1: '',
+            inputKey2:'',
+            outputkey:'',
         }
     },
 
