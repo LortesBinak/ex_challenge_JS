@@ -2,7 +2,7 @@ const app = Vue.createApp({
     data:function(){
         return{
             selectedFile:null,
-            selectedListElement: false,
+            selectedListElement: true,
             parsingStatus: false,
             parsedFileArray: [],
             parsedFileKeys: [],
@@ -64,23 +64,21 @@ const app = Vue.createApp({
             
         },
 
-        evaluateCsv(){
-            var inp1 = this.inputKey1
-            var inp2 = this.inputKey2
-            var outp = this.outputkey
-
-            console.log(inp1 + ' ' + inp2 + ' '+ outp)
-
-            var temp1 = this.parsedFileArray[0]["MxT"] - this.parsedFileArray[0]["MnT"]
+        evaluateCsv(){         
+            if(this.outputkey === "" ){
+                alert("Please choose the output value !")
+                return;
+            }
+            var temp1 = this.parsedFileArray[0][this.inputKey2] - this.parsedFileArray[0][this.inputKey1]
             var temp2 = this.parsedFileArray[0][this.outputkey]
             for(var i=0; i < this.parsedFileArray.length; i++){
-                if((this.parsedFileArray[i]["MxT"] - this.parsedFileArray[i]["MnT"]) < temp1 ){
-                    temp1 = this.parsedFileArray[i]["MxT"] - this.parsedFileArray[i]["MnT"]
+                if((this.parsedFileArray[i][this.inputKey2] - this.parsedFileArray[i][this.inputKey1]) < temp1 ){
+                    temp1 = this.parsedFileArray[i][this.inputKey2] - this.parsedFileArray[i][this.inputKey1]
                     temp2 = this.parsedFileArray[i][this.outputkey]
                 }               
             }
             this.outputvalue = temp2
-            console.log(this.outputvalue)
+            this.evaluationResult = temp2
         },
     }
 

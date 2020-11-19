@@ -18,22 +18,21 @@
       <h1>Import, Read and evaluate a CSV</h1>
     </header>
     <section id="programmingChallenge">
-      <input type="file" id="uploadCsvFile" @change="previewFiles" >
-      <button @click="parseCsv">Parse CSV</button>
+      <input type="file" id="uploadCsvFile" :style="{float: 'left'}" @change="previewFiles" >
+      <button @click="parseCsv"> --> Parse CSV</button>
       <div v-if="parsingStatus">
         <p :style="{color: 'Blue', 'font-weight': 'bold'}">The parsing was successful. The file can now be evaluated!</p>
-        <h3>First Input for comparison (Minimum value) </h3>
+        <h3>First Input ( Column Minimum value) </h3>
         <ul>
             <li v-for="(value, index) in parsedFileKeys" :key="value" @click="setInputKey1(value, '1')">{{value}}</li>
         </ul>
-        <h3>Second Input for comparison (Maximum value) </h3>
+        <h3>Second Input ( Column Maximum value) </h3>
         <ul>
-            <li v-for="(value, index) in parsedFileKeys" :key="value" @click="setInputKey1(value, '1')">{{value}}</li>
+            <li v-for="(value, index) in parsedFileKeys" :key="value" @click="setInputKey1(value, '2')">{{value}}</li>
         </ul>
         <h3> Output value </h3>
         <ul>
-            <li v-for="(value,index) in parsedFileKeys" 
-                :class="{selected: selectedListElement}" 
+            <li v-for="(value,index) in parsedFileKeys"  
                 :key="value" 
                 @click="setOutputKey1(value)"
             >{{value}}</li>
