@@ -24,18 +24,24 @@
         <p :style="{color: 'Blue', 'font-weight': 'bold'}">The parsing was successful. The file can now be evaluated!</p>
         <h3>First Input for comparison (Minimum value) </h3>
         <ul>
-            <li v-for="(value,key, index) in parsedFileKeys" :key="value" @click="alert('hi')">{{value}}</li>
+            <li v-for="(value, index) in parsedFileKeys" :key="value" @click="setInputKey1(value, '1')">{{value}}</li>
         </ul>
         <h3>Second Input for comparison (Maximum value) </h3>
         <ul>
-            <li v-for="(value,key, index) in parsedFileKeys" :key="value">{{value}}</li>
+            <li v-for="(value, index) in parsedFileKeys" :key="value" @click="setInputKey1(value, '1')">{{value}}</li>
         </ul>
         <h3> Output value </h3>
         <ul>
-            <li v-for="(value,key, index) in parsedFileKeys" :key="value">{{value}}</li>
+            <li v-for="(value,index) in parsedFileKeys" 
+                :class="{selected: selectedListElement}" 
+                :key="value" 
+                @click="setOutputKey1(value)"
+            >{{value}}</li>
         </ul>
         <button @click="evaluateCsv">Evaluate</button>
         <table id="exportCsvTable"></table>
+
+        <p>Result: {{ evaluationResult}}</p>
       </div>
     </section>
   </body>

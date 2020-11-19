@@ -2,12 +2,16 @@ const app = Vue.createApp({
     data:function(){
         return{
             selectedFile:null,
+            selectedListElement: false,
             parsingStatus: false,
             parsedFileArray: [],
             parsedFileKeys: [],
             inputKey1: '',
             inputKey2:'',
             outputkey:'',
+            outputvalue:'',
+            evaluationResult:'',
+            temp:'',
         }
     },
 
@@ -24,9 +28,10 @@ const app = Vue.createApp({
                 header: true,
                 complete: function(results){
                     that.getFileHeader(Object.keys(results.data[0]))
-                    results.data.map((data, index)=> {
-                      that.evaluateCsv(data)
-                    })
+                    that.saveCsvData(results.data)
+                    //results.data.map((data, index)=> {
+                    //  that.saveCsvData(data)
+                    //})
                     
                 }
             })
@@ -35,15 +40,48 @@ const app = Vue.createApp({
 
         getFileHeader(array){
             this.parsedFileKeys = array
-            console.log(this.parsedFileKeys)
         },
 
-        evaluateCsv(data){
-            this.parsedFileArray.push (data["MxT"])
-            console.log(this.parsedFileArray) 
-        }
+        setInputKey1(value, trigger){
+            if(trigger === '1'){
+                this.inputKey1 = value
+                console.log(this.inputKey1)
+            } else if (trigger === '2'){
+                this.inputKey2 = value
+                console.log(this.inputKey2)
+            }
+        },
 
-       
+        setOutputKey1(value){
+            this.outputkey = value
+            console.log(this.outputkey)
+            this.selectedListElement = true
+        },
+
+        saveCsvData(data){
+            this.parsedFileArray = data
+            console.log(this.parsedFileArray) 
+            
+        },
+
+        evaluateCsv(){
+            var inp1 = this.inputKey1
+            var inp2 = this.inputKey2
+            var outp = this.outputkey
+
+            console.log(inp1 + ' ' + inp2 + ' '+ outp)
+
+            var temp1 = this.parsedFileArray[0]["MxT"] - this.parsedFileArray[0]["MnT"]
+            var temp2 = this.parsedFileArray[0][this.outputkey]
+            for(var i=0; i < this.parsedFileArray.length; i++){
+                if((this.parsedFileArray[i]["MxT"] - this.parsedFileArray[i]["MnT"]) < temp1 ){
+                    temp1 = this.parsedFileArray[i]["MxT"] - this.parsedFileArray[i]["MnT"]
+                    temp2 = this.parsedFileArray[i][this.outputkey]
+                }               
+            }
+            this.outputvalue = temp2
+            console.log(this.outputvalue)
+        },
     }
 
 });
