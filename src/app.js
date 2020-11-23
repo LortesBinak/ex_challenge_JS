@@ -11,7 +11,6 @@ const app = Vue.createApp({
             outputkey:'',
             outputvalue:'',
             evaluationResult:'',
-            temp:'',
         }
     },
 

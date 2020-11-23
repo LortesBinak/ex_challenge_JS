@@ -54,6 +54,11 @@ header {
   border-radius: 10px;
 }
 
+.selected{
+  background-color: #fcf9fa;
+  color: #0308f7;
+}
+
 #programmingChallenge button {
   font: inherit;
   cursor: pointer;
@@ -69,4 +74,10 @@ header {
   background-color: #06abf8;
   border-color: #06abf8;
   box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.26);
+}
+
+.testclass{
+  color: darkred;
+  font-weight: bold;
+  font-size: 2rem;
 }
